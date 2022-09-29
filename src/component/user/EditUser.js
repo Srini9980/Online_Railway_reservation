@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from '../../store/actions/UserrAction';
 import f from '../assets/f.jpg';
+import NavBar from '../navbar/Navbar';
 
 function EditUser() {
 
@@ -47,6 +48,7 @@ function EditUser() {
 
     return (
         <div style={{ backgroundImage: `url(${f})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"1050px" }}>
+            <NavBar />
             <h2 style={{ color: "wheat" }}><u>Update User</u></h2><br></br>
             <div className='container' style={{
                 display: 'flow-root',

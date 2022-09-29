@@ -27,28 +27,31 @@ function FetchTrain1() {
     }
 
     return (
-        <div style={{ backgroundImage: `url(${h})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"753px" }}>
-            <NavBar/>
-        <div>
-            {
-                train !== null &&
-                <div style={{color:"white", fontSize:"20px", fontFamily:"sans-serif"}}>
-                    <h2><u><i>Train Details</i></u></h2><br></br>
-                    <p>Train Id : {train.trainId}</p>
-                    <p>Train Name : {train.trainName}</p>
-                    <p>Source : {train.source}</p>
-                    <p>Destination : {train.destination}</p>
-                    <p>Departure time : {train.departureTime}</p>
-                    <p>Arrival time : {train.arrivalTime}</p>
-                    <p>Seat availability : {train.seatsAvailability}</p>
-                    <p>Fare Id : {train.fareId}</p><br></br>
-                    <Link to={`/train/edit/${train.trainId}`}><button className="btn btn-primary mx-5 active">Edit</button></Link>
-                    <button onClick={deleteTrain} className="btn btn-danger active">Delete</button>
-                </div>
-            }
+        <div style={{ backgroundImage: `url(${h})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height: "753px" }}>
+            <NavBar />
+            <div>
+                {
+                    train !== null &&
+                    <div style={{ color: "white", fontSize: "20px", fontFamily: "sans-serif" }}>
+                        <h2><u><i>Train Details</i></u></h2><br></br>
+                        <p>Train Id : {train.trainId}</p>
+                        <p>Train Name : {train.trainName}</p>
+                        <p>Source : {train.source}</p>
+                        <p>Destination : {train.destination}</p>
+                        <p>Departure time : {train.departureTime}</p>
+                        <p>Arrival time : {train.arrivalTime}</p>
+                        <p>Seat availability : {train.seatsAvailability}</p>
+                        <p>Fare Id : {train.fareId}</p><br></br>
+                        <Link to={`/train/edit/${train.trainId}`}><button className="btn btn-primary mx-5 active">Edit</button></Link>
+                        <button onClick={() => {
+                            const confirmBox = window.confirm("Are you sure you want delete this Train details")
+                            if (confirmBox === true) { deleteTrain() }
+                        }} className="btn btn-danger active">Delete</button>
+                    </div>
+                }
             </div>
             <div><br></br>
-            <button className='btn btn-secondary mx-5' onClick={() => navigate(-1)}>Back</button>
+                <button className='btn btn-secondary mx-5' onClick={() => navigate(-1)}>Back</button>
             </div>
         </div>
     )

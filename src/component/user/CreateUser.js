@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createNewUser } from '../../store/actions/UserrAction';
 import c from '../assets/c.jpg';
+import NavBar1 from '../navbar/NavBar1';
 
 function CreateUser() {
 
@@ -95,6 +96,7 @@ function CreateUser() {
 
     return (
         <div style={{ backgroundImage: `url(${c})`, backgroundRepeat: "no-repeat", backgroundSize: "100%", height: "1130px" }}>
+            <NavBar1 />
             <h2 style={{ color: "whitesmoke" }}><i>User Registration</i></h2><br></br>
             <div className='container' style={{
                 display: 'inline-grid',

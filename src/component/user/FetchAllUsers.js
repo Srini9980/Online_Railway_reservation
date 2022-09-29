@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import d from '../assets/d.jpg';
 import d1 from '../assets/d1.jfif';
 import { getAllUsers } from '../../store/actions/UserrAction';
+import NavBar from '../navbar/Navbar';
 
 function FetchAllUsers() {
 
@@ -21,6 +22,7 @@ function FetchAllUsers() {
 
     return (
         <div style={{ backgroundImage: `url(${d1})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%" }}>
+            <NavBar />
             <h2 style={{color : "lightBlue", fontSize:"38px"}}><u><i>Users List</i></u></h2><br></br>
             <div className="container">
             <div className="row">

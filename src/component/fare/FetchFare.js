@@ -26,9 +26,9 @@ function FetchFare() {
     }
 
     return (
-        <div style={{ backgroundImage: `url(${p})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"753px" }}>
-            <NavBar/>
-            <h2 style={{fontSize:"45px", fontFamily:"fantasy"}}><u>Fare Details</u></h2><br></br>
+        <div style={{ backgroundImage: `url(${p})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height: "753px" }}>
+            <NavBar />
+            <h2 style={{ fontSize: "45px", fontFamily: "fantasy" }}><u>Fare Details</u></h2><br></br>
             <div className='container' style={{
                 display: 'inline-grid',
                 alignItems: 'center',
@@ -40,14 +40,17 @@ function FetchFare() {
                     fare !== null &&
                     <div className="card bg-light text-dark" style={{ width: "500px", height: "100%" }}>
                         <div className="card-body" style={{ backgroundImage: `url(${p1})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", color: "black" }}>
-                                <p> Fare Id : {fare.fareId}</p>
-                                <p>Tatka : Rs. {fare.tatkal}</p>
-                                <p>Second class : Rs. {fare.secondClass}</p>
-                                <p>Sleeper class : Rs. {fare.sleeperClass}</p>
-                                <p>First class : Rs. {fare.firstClass}</p>
-                                <p>AC chair class : Rs. {fare.acchairClass}</p><br></br>
-                                <Link to={`/fare/edit/${fare.fareId}`}><button style={{float : "left"}} className='btn btn-info'>Edit</button></Link>
-                                <button onClick={deleteFare} style={{float:"right"}} className='btn btn-danger'>Delete</button>
+                            <p> Fare Id : {fare.fareId}</p>
+                            <p>Tatka : Rs. {fare.tatkal}</p>
+                            <p>Second class : Rs. {fare.secondClass}</p>
+                            <p>Sleeper class : Rs. {fare.sleeperClass}</p>
+                            <p>First class : Rs. {fare.firstClass}</p>
+                            <p>AC chair class : Rs. {fare.acchairClass}</p><br></br>
+                            <Link to={`/fare/edit/${fare.fareId}`}><button style={{ float: "left" }} className='btn btn-info'>Edit</button></Link>
+                            <button onClick={() => {
+                                const confirmBox = window.confirm("Are you sure you want delete this Fare details")
+                                if (confirmBox === true) { deleteFare() }}} style = {{ float: "right" }
+                            } className='btn btn-danger'>Delete</button>
                         </div>
                         <button onClick={() => navigate(-1)} className='btn btn-secondary'>Back</button>
                     </div>

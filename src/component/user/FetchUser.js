@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import e from '../assets/e.jfif';
 import { deleteUserDetails, getUserById } from '../../store/actions/UserrAction';
+import NavBar from '../navbar/Navbar';
 
 function FetchUser() {
 
@@ -25,6 +26,7 @@ function FetchUser() {
 
     return (
         <div style={{ backgroundImage: `url(${e})`, backgroundRepeat: "no-repeat", backgroundSize: "100%" , height:"753px"}}>
+            <NavBar />
             <h2 style={{fontSize:"40px", color:"white"}}><u><i>User Details</i></u></h2>
             {
                 user !== null &&
@@ -43,7 +45,9 @@ function FetchUser() {
                             <p>E-mail : {user.email}</p>
                             </div>
                             <Link to={`/user/edit/${user.userId}`}><button style={{ float: "left" }} className="btn btn-primary">Edit</button></Link>
-                            <button onClick={deleteUser} className="btn btn-danger" style={{ float: "right" }}>Delete</button>
+                            <button onClick={() => {
+                                const confirmBox = window.confirm("Are you sure you want delete this User details")
+                                if (confirmBox === true) { deleteUser() }}} className="btn btn-danger" style={{ float: "right" }}>Delete</button>
                         </div>
                     </div><br></br><br></br>
                     <Link to = "/user/all" className="btn btn-secondary">Back</Link>

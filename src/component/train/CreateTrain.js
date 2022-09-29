@@ -78,17 +78,17 @@ function CreateTrain() {
             }
 
             dispatch(createNewTrain(payload));
-            alert("Train details are successfully added with id " + train.trainId);
-            navigate("/fare/add");
+            // alert("Train details are successfully added with id " + train.trainId);
+            navigate(`/fare/add/${fareId}`);
         }
     }
 
     return (
         <div>
-            {
-                myUser !== null ?
-                    <div style={{ backgroundImage: `url(${n1})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height: "950px" }}>
-                        <NavBar />
+            <div style={{ backgroundImage: `url(${n1})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height: "950px" }}>
+                <NavBar />
+                {
+                    myUser !== null ?
                         <div>
                             <h2 style={{ fontSize: "40px", fontFamily: "fantasy" }}><u>Adding Train Details</u></h2><br></br>
                             <div className='container' style={{
@@ -150,7 +150,7 @@ function CreateTrain() {
                                         </div>
                                         <div className='form-group'>
                                             <label htmlFor='departureTime'>Departure Time :</label>
-                                            <input type="text" className='form-control' name="departureTime" value={departureTime} onChange={train => setDepartureTime(train.target.value)} placeholder="Departure Time" />
+                                            <input type="time" className='form-control' name="departureTime" value={departureTime} onChange={train => setDepartureTime(train.target.value)} placeholder="Departure Time" />
                                             {
                                                 formErrors.departureTimeError &&
                                                 <div style={{ textAlign: "start", color: "red", fontSize: "15px" }}>{formErrors.departureTimeError}</div>
@@ -158,7 +158,7 @@ function CreateTrain() {
                                         </div>
                                         <div className='form-group'>
                                             <label htmlFor='arrivalTime'>Arrival Time :</label>
-                                            <input type="text" className='form-control' name="arrivalTime" value={arrivalTime} onChange={train => setArrivalTime(train.target.value)} placeholder="Arrival time" />
+                                            <input type="time" className='form-control' name="arrivalTime" value={arrivalTime} onChange={train => setArrivalTime(train.target.value)} placeholder="Arrival time" />
                                             {
                                                 formErrors.arrivalTimeError &&
                                                 <div style={{ textAlign: "start", color: "red", fontSize: "15px" }}>{formErrors.arrivalTimeError}</div>
@@ -188,9 +188,9 @@ function CreateTrain() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    : <h2>Please login to Add a Train Details<br></br><Link to="/user/login">Click here to sign In</Link></h2>
-            }
+                        : <h2>Please login to add train details<br></br><Link to="/user/login">Click here to login</Link></h2>
+                }
+            </div>
         </div>
     )
 

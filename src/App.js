@@ -26,6 +26,11 @@ import EditUser from './component/user/EditUser';
 import UserLogin from './component/user/UserLogin';
 import FetchAllTrain1 from './component/train/FetchAllTrain1';
 import FetchTrain1 from './component/train/FetchTrain1';
+import FetchAllPnr from './component/pnr/FetchAllPnr';
+import FetchPnr from './component/pnr/FetchPnr';
+import FetchAllBooking1 from './component/booking/FetchAllBooking1';
+import FetchBooking1 from './component/booking/FetchBooking1';
+import AdminDashboard from './component/dashboard/AdminDashboard';
 
 function App() {
   return (
@@ -47,14 +52,19 @@ function App() {
           <Route path="/booking/all" element={<FetchAllBooking />} />
           <Route path="/booking/all/:id" element={<FetchBooking />} />
           <Route path="/booking/add/:id" element={<ReserveTicket />} />
+          <Route path="/booking1/all" element={<FetchAllBooking1 />} />
+          <Route path="/booking1/all/:id" element={<FetchBooking1 />}/>
           <Route path="/pnr/status/:id" element={<CheckPNRStatus />} />
           <Route path="/train/search" element={<SearchTrain />} />
-          <Route path="/pnr/update" element={<UpdatePnr />} />
+          <Route path="/pnr/update/:id1/:id2/:id3" element={<UpdatePnr />} />
+          <Route path="/pnr/all" element={<FetchAllPnr />} />
+          <Route path="/pnr/all/:id" element={<FetchPnr />} />
           <Route path="/fare/all" element={<FetchAllFare />} />
           <Route path="/fare/all/:id" element={<FetchFare />} />
-          <Route path="/fare/add" element={<AddFare />} />
+          <Route path="/fare/add/:id" element={<AddFare />} />
           <Route path="/fare/edit/:id" element={<EditFare />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
       </Router>
     </div>

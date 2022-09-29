@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { NavDropdown, Nav, Navbar } from 'react-bootstrap';
 import logo from '../assets/logo.jpg';
+import { useSelector } from 'react-redux';
 
 function NavBar1() {
 
+    const loggedInUser = useSelector(state => state.userReducer.loggedInUser);
+    const [loggedIn, setLoggedIn] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const myUser = localStorage.getItem("myUser");
+        if(myUser !== null) {
+            setLoggedIn(true);
+        }
+    });
+
+    const goToLogin = () => {
+        return navigate("/user/login");
+    }
 
     const doLogout = () => {
         const myUser = localStorage.getItem("myUser");
@@ -24,15 +38,16 @@ function NavBar1() {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href="/about">About </Nav.Link>
+                    <Nav.Link href="/admin/dashboard">Dasboard </Nav.Link>
                     <NavDropdown title="Train" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#">View Trains</NavDropdown.Item>
+                        <NavDropdown.Item href="/train/all">View Trains</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Bookings" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#">My Bookings</NavDropdown.Item>
-                        <NavDropdown.Item href="#">Cancel Bookings</NavDropdown.Item>
+                        <NavDropdown.Item href="/booking/all">My Bookings</NavDropdown.Item>
+                        <NavDropdown.Item href="/booking/all">Cancel Bookings</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="PNR" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#">Check PNT status</NavDropdown.Item>
+                        <NavDropdown.Item href="/booking/all">Check PNR status</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 <Nav className='container-fluid' style={{
@@ -44,7 +59,18 @@ function NavBar1() {
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" />
                         <button class="btn btn-light" type="submit">Search</button>
                     </form>
-                    <Nav.Link href=""><button className='btn btn-dark' onClick={doLogout}>Logout</button></Nav.Link>
+                    <Nav.Link>
+                        {
+                            loggedIn ?
+                            <li className='nav-item'>
+                                <button onClick={doLogout} className='btn btn-dark'>Logout</button>
+                            </li>
+                            :
+                            <li className='nav-item'>
+                                <button onClick={goToLogin} className='btn btn-dark'>Login</button>
+                            </li>
+                        }
+                    </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

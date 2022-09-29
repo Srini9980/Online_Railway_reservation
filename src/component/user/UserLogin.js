@@ -9,6 +9,7 @@ function UserLogin() {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("");
 
     const loggedInUser = useSelector(state => state.userReducer.loggedInUser);
 
@@ -35,9 +36,11 @@ function UserLogin() {
             const payload = {
                 userName: userName,
                 password: password,
+                role: role
             }
 
             dispatch(doUserLogin(payload));
+            alert("You have been logged in successfully");
             navigate(-1);
         }
     }
@@ -53,7 +56,14 @@ function UserLogin() {
             }}>
                 {
                     loggedInUser !== null ?
-                        navigate("/user/all")
+                    
+                        loggedInUser.role === "admin" ?
+                            navigate("/admin/dashboard")
+                            :
+                            loggedInUser.role === "passenger" ?
+                                navigate(-1)
+                                :
+                                navigate("/")
                         :
                         <div className="card bg-dark text-light" style={{ width: "330px", height: "450px", borderRadius: "4em", fontSize: "16px" }}>
                             <div className="card-body" style={{ backgroundImage: `url(${b1})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", width: "330px", height: "450px", borderRadius: "3em", color: "white", fontSize: "18px" }}>
@@ -74,9 +84,17 @@ function UserLogin() {
                                         <div style={{ textAlign: "start", color: "red", fontSize: "15px", fontFamily: "monospace" }}>{formErrors.passwordError}</div>
                                     }
                                 </div>
-                                <diV>
+                                <div style={{ fontFamily: "serif", fontSize: "20px" }}>
+                                    <label htmlFor="role">Role : </label>
+                                    <select type="role" className="form-control" name="role" value={role} onChange={user => setRole(user.target.value)}>
+                                        <option value="" >    -------Select role----- </option>
+                                        <option value="admin">Admin</option>
+                                        <option value="passenger">Passenger</option>
+                                    </select>
+                                </div>
+                                <div>
                                     <button onClick={doLogin} className="btn btn-success">Login</button>
-                                </diV><br></br>
+                                </div><br></br>
                                 <div style={{ fontSize: "15px" }}>
                                     If you dont't have an account! <Link to="/user/save" style={{ color: "red", fontSize: "15px" }}><u>CLICK HERE</u></Link>
                                 </div>

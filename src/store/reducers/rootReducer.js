@@ -3,7 +3,6 @@ import userReducer from './UserReducer';
 import trainReducer from './TrainReducer';
 import bookingReducer from './BookingReducer'
 import pnrReducer from './PnrReducer';
-import adminReducer from './AdminReducer';
 import fareReducer from './FareReducer';
 
 const rootReducer = combineReducers ({
@@ -11,7 +10,6 @@ const rootReducer = combineReducers ({
     trainReducer,
     bookingReducer,
     pnrReducer,
-    adminReducer,
     fareReducer,
 
 });

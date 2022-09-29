@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { createPnr } from '../../store/actions/PnrAction';
+import NavBar from '../navbar/Navbar';
+import t from '../assets/t.jfif';
 
 function UpdatePnr() {
 
+    const pnr = useSelector(state => state.pnrReducer.newPnr);
+
+    const { id1 } = useParams();
+    const { id2 } = useParams();
+    const { id3 } = useParams();
+
+    const [pnrId, setPnrId] = useState(id1);
     const [pnrStatus, setPnrStatus] = useState("");
-    const [bookingId, setBookingId] = useState("");
-    const [trainId, setTrainId] = useState("");
+    const [bookingId, setBookingId] = useState(id2);
+    const [trainId, setTrainId] = useState(id3);
 
     const [formErrors, setFormErrors] = useState({});
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const pnr = useSelector(state => state.pnrReducer.newPnr)
 
     const handleSubmit = () => {
 
@@ -38,6 +45,7 @@ function UpdatePnr() {
         if (noErrors) {
 
             const payload = {
+                pnrId: pnrId,
                 pnrStatus: pnrStatus,
                 bookingId: bookingId,
                 trainId: trainId
@@ -50,9 +58,21 @@ function UpdatePnr() {
     }
 
     return (
-        <div>
-            <div>
-                <h2>PNR</h2><br></br>
+        <div style={{ backgroundImage: `url(${t})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height: "753px" }}>
+            <NavBar />
+            <h2 style={{ fontSize: "40px", color: "whitesmoke" }}><u><i>Update PNR Status</i></u></h2><br></br>
+            <div className='container' style={{
+                display: 'inline-grid',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '60vh',
+                fontSize: "20px",
+                color: "whitesmoke"
+            }}>
+                <div className="form-group">
+                    <label htmlFor='pnrId'>PNR No</label>
+                    <input type="number" className="form-control" name="pnrId" value={pnrId} onChange={pnr => setPnrId(id1)} disabled />
+                </div>
                 <div className="form-group">
                     <label htmlFor='pnrStatus'>PNR status:</label>
                     <select name="pnrStatus" value={pnrStatus} onChange={pnr => setPnrStatus(pnr.target.value)}>
@@ -60,7 +80,6 @@ function UpdatePnr() {
                         <option value="confirmed">Confirmed</option>
                         <option value="waitingList">Waiting-List</option>
                         <option value="cancelled">Cancelled</option>
-                        <option value="failed">Failed</option>
                     </select>
                     {
                         formErrors.pnrStatusError &&
@@ -69,19 +88,11 @@ function UpdatePnr() {
                 </div>
                 <div className="form-group">
                     <label htmlFor='bookingId'>Booking Id</label>
-                    <input type="number" className="form-control" name="bookingId" value={bookingId} onChange={pnr => setBookingId(pnr.target.value)} placeholder="Booking id" />
-                    {
-                        formErrors.bookingIdError &&
-                        <div style={{ textAlign: "start", color: "red", fontSize: "17px" }}>{formErrors.bookingIdError}</div>
-                    }
+                    <input type="number" className="form-control" name="bookingId" value={bookingId} onChange={pnr => setBookingId(id2)} disabled />
                 </div>
                 <div className="form-group">
                     <label htmlFor='trainId'>Train Id</label>
-                    <input type="number" className="form-control" name="trainId" value={trainId} onChange={pnr => setTrainId(pnr.target.value)} placeholder="Train id" />
-                    {
-                        formErrors.trainIdError &&
-                        <div style={{ textAlign: "start", color: "red", fontSize: "17px" }}>{formErrors.trainIdError}</div>
-                    }
+                    <input type="number" className="form-control" name="trainId" value={trainId} onChange={pnr => setTrainId(id3)} disabled />
                 </div>
                 <div>
                     <button className='btn btn-secondary mx-5' onClick={() => navigate(-1)}>Back</button>

@@ -72,8 +72,9 @@ function ReserveTicket() {
             }
 
             dispatch(createBooking(payload));
-            alert("Booking is successfully reserved with id " + booking.bookingId)
-            navigate("/booking/all");
+            alert("Booking is successfully reserved with id " + booking.bookingId);
+            alert("Your PNR number is " + booking.pnrId);
+            navigate(-1);
         }
     }
 

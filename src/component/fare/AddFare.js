@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { createNewFare } from '../../store/actions/FareAction';
 import n from '../assets/n.jpg';
 import NavBar from '../navbar/Navbar';
 
 function AddFare() {
 
+    const fare = useSelector(state => state.fareReducer.newFare);
+    const { id } = useParams();
+
+    const [fareId, setfareId] = useState(id);
     const [tatkal, setTatkal] = useState("");
     const [secondClass, setSecondClass] = useState("");
     const [sleeperClass, setSleeperClass] = useState("");
@@ -18,8 +22,6 @@ function AddFare() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const fare = useSelector(state => state.fareReducer.newFare);
-
     const handleSubmit = () => {
 
         let errors = {};
@@ -28,20 +30,40 @@ function AddFare() {
             errors['tatkalError'] = "*Tatkal price is required!";
         }
 
+        else if(tatkal <= 0) {
+            errors['tatkalError'] = "*Tatkal price should not be negative!"
+        }
+
         if (!secondClass) {
             errors['secondClassError'] = "*Second Class price is required!";
+        }
+
+        else if(secondClass <= 0) {
+            errors['secondClassError'] = "*secondClass price should not be negative!"
         }
 
         if (!sleeperClass) {
             errors['sleeperClassError'] = "*Sleeper class price is required!";
         }
 
+        else if(sleeperClass <= 0) {
+            errors['sleeperClassError'] = "*sleeperClass price should not be negative!"
+        }
+
         if (!firstClass) {
             errors['firstClassError'] = "*First class price is required!";
         }
 
+        else if(firstClass <= 0) {
+            errors['firstClassError'] = "*firstClass price should not be negative!"
+        }
+
         if (!acchairClass) {
             errors['acchairClassError'] = "*Ac Chair class price is required!";
+        }
+
+        else if(acchairClass <= 0) {
+            errors['acchairClassError'] = "*Ac chair price should not be negative!"
         }
 
         setFormErrors(errors);
@@ -58,13 +80,13 @@ function AddFare() {
             }
 
             dispatch(createNewFare(payload));
-            alert("Fare is added with the id " + fare.fareId);
-            navigate("")
+            // alert("Fare is added with the id " + fare.fareId);
+            navigate("/train1/all")
         }
     }
 
     return (
-        <div style={{ backgroundImage: `url(${n})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"753px"}}>
+        <div style={{ backgroundImage: `url(${n})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"840px"}}>
             <NavBar/>
             <h2 style={{color:"white", fontSize:"40px", fontFamily:"initial"}}><u>Add Fare Details</u></h2><br></br>
             <div className='container-fluid' style={{
@@ -76,6 +98,10 @@ function AddFare() {
                 color : "white"
             }}>
                 <div className="" style={{ width: "500px", height: "100%", backgroundColor:"transparent" }}>
+                    <div className='form-group'>
+                        <label htmlFor='fareId'>Fare Id</label>
+                        <input type="number" className='form-control' name="fareId" value={fareId} onChange={fare => setTatkal(id)} disabled />
+                    </div>
                     <div className='form-group'>
                         <label htmlFor='tatkal'>Tatkal</label>
                         <input type="number" className='form-control' name="tatkal" value={tatkal} onChange={fare => setTatkal(fare.target.value)} placeholder="Tatkal" />

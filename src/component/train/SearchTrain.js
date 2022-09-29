@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getTrainByRoute } from '../../store/actions/TrainAction';
 import g1 from '../assets/g1.png';
 import g from '../assets/g.png';
+import NavBar1 from '../navbar/NavBar1';
 
 function SearchTrain() {
 
@@ -21,10 +22,12 @@ function SearchTrain() {
 
     return (
             <div style={{ backgroundImage: `url(${g})`, backgroundRepeat: "no-repeat", backgroundSize: "100%", height:"753px"}}>
+                <NavBar1 />
                 {
                     train !== null ?
                         <div className="container" >
                             <h2 style={{color:"white", fontSize:"40px"}}><u><i>Available trains</i></u></h2><br></br>
+                            <div className='row'>
                             {
                                 train.map((train, index) =>
                                     <div key={index} className="col-sm-3"><br></br>
@@ -40,6 +43,7 @@ function SearchTrain() {
                                     </div>
                                 )
                             }
+                            </div>
                         </div>
                         : <h3 style={{fontSize:"45px", color:"white", fontFamily:"cursive"}}>Sorry we could not find any train with this route !!</h3>
                 }

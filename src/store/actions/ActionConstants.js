@@ -22,6 +22,8 @@ export const BOOKING_ADD = "BOOKING_ADD";
 export const BOOKING_DELETE = "BOOKING_DELETE";
 
 export const PNR_FETCHBY_ID = "PNR_FETCHBY_ID";
+export const PNR_FETCHALL = "PNR_FETCHALL";
+export const PNR_DELETE = "PNR_DELETE";
 export const PNR_ADD = "PNR_ADD";
 
 export const FARE_FETCHALL = "FARE_FETCHALL";
