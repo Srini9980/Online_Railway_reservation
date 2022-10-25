@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { updateUser } from '../../store/actions/UserrAction';
+import { updateUser } from '../../store/actions/UserAction';
 import f from '../assets/f.jpg';
 import NavBar from '../navbar/Navbar';
 

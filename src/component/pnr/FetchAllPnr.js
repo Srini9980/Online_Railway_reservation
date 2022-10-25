@@ -19,18 +19,19 @@ function FetchAllPnr() {
     }, []);
 
     return (
-        <div style={{ backgroundImage: `url(${s1})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"753px", color:"whitesmoke"}}>
+        <div style={{ backgroundImage: `url(${s1})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"753px"}}>
             <NavBar/>
-            <h2 style={{fontSize:"40px", fontFamily:"serif"}}><u>All PNR List</u></h2><br></br>
+            <h2 style={{fontSize:"40px", fontFamily:"serif", color:"wheat"}}><u>All PNR List</u></h2><br></br>
             <div className="container">
                 <div className="row">
                     {
                         pnrs.map((pnr, index) => 
-                        <div key={index} className="col-sm-3">
+                        <div key={index} className="col-sm-4">
                             <Link to={`${pnr.pnrId}`}>
-                                <div className="card" style={{width:"300px", height:"100px", backgroundColor:"transparent", fontSize : "30px", color:"white"}}>
+                                <div className="card" style={{width:"300px", height:"150px", backgroundColor:"transparent", fontSize : "30px", color:"white"}}>
                                     <h4>PNR No : {pnr.pnrId}</h4>
                                     <p>Status : {pnr.pnrStatus}</p>
+                                    <p>Seat no : {pnr.seatNo}</p>
                                 </div><br></br><br></br>
                             </Link>
                         </div>

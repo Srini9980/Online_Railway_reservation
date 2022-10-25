@@ -47,6 +47,9 @@ function FetchTrain1() {
                             const confirmBox = window.confirm("Are you sure you want delete this Train details")
                             if (confirmBox === true) { deleteTrain() }
                         }} className="btn btn-danger active">Delete</button>
+
+                        <button onClick={() => navigate(`/fare/add/${train.fareId}`)} className='btn btn-warning active mx-5' >Add Fare</button>
+
                     </div>
                 }
             </div>

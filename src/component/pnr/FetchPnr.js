@@ -8,8 +8,6 @@ import s2 from '../assets/s2.jfif';
 function FetchPnr() {
 
     const pnr = useSelector(state => state.pnrReducer.pnrById);
-    const booking = useSelector(state => state.bookingReducer.booking);
-    const train = useSelector(state => state.trainReducer.train);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
@@ -18,6 +16,7 @@ function FetchPnr() {
         dispatch(getPnrById(id));
     }
 
+    // eslint-disable-next-line
     useEffect(fetchPnr, [id]);
 
     const deletePnr = () => {
@@ -43,6 +42,7 @@ function FetchPnr() {
                     <div>
                         <p>PNR No : {pnr.pnrId}</p>
                         <p>Status : {pnr.pnrStatus}</p>
+                        <p>Seat no : {pnr.seatNo}</p>
                         <p>Booking Id : {pnr.bookingId}</p>
                         <p>Train Id : {pnr.trainId}</p>
                     </div>

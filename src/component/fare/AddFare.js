@@ -72,6 +72,7 @@ function AddFare() {
         if (noErrors) {
 
             const payload = {
+                fareId : fareId,
                 tatkal: tatkal,
                 secondClass: secondClass,
                 sleeperClass: sleeperClass,
@@ -80,7 +81,7 @@ function AddFare() {
             }
 
             dispatch(createNewFare(payload));
-            // alert("Fare is added with the id " + fare.fareId);
+            alert("Fare detils is added successfully");
             navigate("/train1/all")
         }
     }
@@ -100,7 +101,7 @@ function AddFare() {
                 <div className="" style={{ width: "500px", height: "100%", backgroundColor:"transparent" }}>
                     <div className='form-group'>
                         <label htmlFor='fareId'>Fare Id</label>
-                        <input type="number" className='form-control' name="fareId" value={fareId} onChange={fare => setTatkal(id)} disabled />
+                        <input type="number" className='form-control' name="fareId" value={fareId} onChange={fare => setfareId(id)} disabled />
                     </div>
                     <div className='form-group'>
                         <label htmlFor='tatkal'>Tatkal</label>
@@ -143,7 +144,7 @@ function AddFare() {
                         }
                     </div>
                     <div><br></br>
-                        <button className='btn btn-secondary' style={{float : "left"}}>Back</button>
+                        <button className='btn btn-secondary' onClick={() => navigate(-1)} style={{float : "left"}}>Back</button>
                         <button className='btn btn-success' style={{float : "right"}} onClick={handleSubmit}>Submit</button>
                     </div>
                 </div>

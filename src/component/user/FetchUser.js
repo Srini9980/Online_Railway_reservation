@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import e from '../assets/e.jfif';
-import { deleteUserDetails, getUserById } from '../../store/actions/UserrAction';
+import { deleteUserDetails, getUserById } from '../../store/actions/UserAction';
 import NavBar from '../navbar/Navbar';
 
 function FetchUser() {

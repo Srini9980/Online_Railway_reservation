@@ -14,5 +14,5 @@ export function fetchAllPnr() {
 }
 
 export function deletePnr(id) {
-    return Axios.delete("http://localhost/8086/pnr/delete/" + id);
+    return Axios.delete("http://localhost:8086/pnr/delete/" + id);
 }

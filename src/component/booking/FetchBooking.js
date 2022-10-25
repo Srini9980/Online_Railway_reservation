@@ -23,6 +23,7 @@ function FetchBooking() {
     const deleteBooking = () => {
         dispatch(cancelBooking(id));
         alert("Ticket canceled successfully");
+        alert("Your money will be credited within next 48 hrs");
         navigate("/");
     }
 

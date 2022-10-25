@@ -12,7 +12,7 @@ function NavBar() {
 
     useEffect(() => {
         const myUser = localStorage.getItem("myUser");
-        if(myUser !== null) {
+        if (myUser !== null) {
             setLoggedIn(true);
         }
     });
@@ -33,7 +33,7 @@ function NavBar() {
     return (
         <Navbar className="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
 
-            <Link className="navbar-brand" to="#"><img src={logo} alt="logo" width="60px" height="40px" /></Link>
+            <Link className="navbar-brand" to="/"><img src={logo} alt="logo" width="60px" height="40px" /></Link>
 
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
@@ -53,7 +53,7 @@ function NavBar() {
                     <NavDropdown title="Bookings" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="/booking1/all">Add PNR</NavDropdown.Item>
                         <NavDropdown.Item href="/booking1/all">View Bookings</NavDropdown.Item>
-                       <NavDropdown.Item href="/pnr/all">All PNR</NavDropdown.Item>
+                        <NavDropdown.Item href="/pnr/all">All PNR</NavDropdown.Item>
                         <NavDropdown.Item href="/booking1/all">Delete PNR</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Users" id="collasible-nav-dropdown">
@@ -64,9 +64,9 @@ function NavBar() {
                     </NavDropdown>
                 </Nav>
                 <Nav className='container-fluid' style={{
-                alignItems: 'right',
-                justifyContent: 'right',
-            }}>
+                    alignItems: 'right',
+                    justifyContent: 'right',
+                }}>
                     <Nav.Link href="#"></Nav.Link>
                     <form class="form-inline" action="/action_page.php">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" />
@@ -75,13 +75,16 @@ function NavBar() {
                     <Nav.Link>
                         {
                             loggedIn ?
-                            <li className='nav-item'>
-                                <button onClick={doLogout} className='btn btn-dark'>Logout</button>
-                            </li>
-                            :
-                            <li className='nav-item'>
-                                <button onClick={goToLogin} className='btn btn-dark'>Login</button>
-                            </li>
+                                <li className='nav-item'>
+                                    <button onClick={() => {
+                                        const confirmBox = window.confirm("Are you sure you want to Logout")
+                                        if (confirmBox === true) { doLogout() }
+                                    }} className='btn btn-dark'>Logout</button>
+                                </li>
+                                :
+                                <li className='nav-item'>
+                                    <button onClick={goToLogin} className='btn btn-dark'>Login</button>
+                                </li>
                         }
                     </Nav.Link>
                 </Nav>

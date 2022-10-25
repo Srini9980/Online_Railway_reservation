@@ -20,7 +20,7 @@ function FetchAllTrain1() {
     }, [])
 
     return (
-        <div style={{ backgroundImage: `url(${g})`, backgroundRepeat: "no-repeat", backgroundSize: "100%" }}>
+        <div style={{ backgroundImage: `url(${g})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%" }}>
             <NavBar/>
             <h2 style={{color:"white", fontSize:"40px", fontFamily:'initial'}}><u><i>All Trains List</i></u></h2><br></br><br></br>
             <div className="container">

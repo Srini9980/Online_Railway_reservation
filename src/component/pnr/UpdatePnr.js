@@ -15,6 +15,7 @@ function UpdatePnr() {
 
     const [pnrId, setPnrId] = useState(id1);
     const [pnrStatus, setPnrStatus] = useState("");
+    const [seatNo, setSeatNo] = useState("");
     const [bookingId, setBookingId] = useState(id2);
     const [trainId, setTrainId] = useState(id3);
 
@@ -29,6 +30,10 @@ function UpdatePnr() {
 
         if (pnrStatus === "select") {
             errors['pnrStatusError'] = "*Please fill the PNR status!";
+        }
+
+        if (!seatNo) {
+            errors['seatNoError'] = "*Please provide seat no!";
         }
 
         if (!bookingId) {
@@ -47,13 +52,14 @@ function UpdatePnr() {
             const payload = {
                 pnrId: pnrId,
                 pnrStatus: pnrStatus,
+                seatNo : seatNo,
                 bookingId: bookingId,
                 trainId: trainId
             }
 
             dispatch(createPnr(payload));
             alert("PNR is updated with id " + pnr.pnrId)
-            navigate("");
+            navigate(-1);
         }
     }
 
@@ -84,6 +90,14 @@ function UpdatePnr() {
                     {
                         formErrors.pnrStatusError &&
                         <div style={{ textAlign: "start", color: "red", fontSize: "17px" }}>{formErrors.pnrStatusError}</div>
+                    }
+                </div>
+                <div className="form-group">
+                    <label htmlFor='seatNo'>Seat No</label>
+                    <input type="text" className="form-control" name="seatNo" value={seatNo} onChange={pnr => setSeatNo(pnr.target.value)} />
+                    {
+                        formErrors.seatNoError &&
+                        <div style={{ textAlign: "start", color: "red", fontSize: "17px" }}>{formErrors.seatNoError}</div>
                     }
                 </div>
                 <div className="form-group">

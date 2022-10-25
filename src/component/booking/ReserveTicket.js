@@ -28,7 +28,7 @@ function ReserveTicket() {
     const disablePast = () => {
         const today = new Date();
         const dd = String(today.getDate() + 1).padStart(2, "0");
-        const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+        const mm = String(today.getMonth() + 1).padStart(2, "0");
         const yyyy = today.getFullYear();
         return yyyy + "-" + mm + "-" + dd;
     }
@@ -63,6 +63,7 @@ function ReserveTicket() {
         if (noErrors) {
 
             const payload = {
+
                 passengerName: passengerName,
                 age: age,
                 gender: gender,
@@ -72,15 +73,13 @@ function ReserveTicket() {
             }
 
             dispatch(createBooking(payload));
-            alert("Booking is successfully reserved with id " + booking.bookingId);
-            alert("Your PNR number is " + booking.pnrId);
-            navigate(-1);
+            navigate(`/payment/${trainId}`);
         }
     }
 
     return (
         <div>
-            <NavBar1/>
+            <NavBar1 />
             {
                 myUser !== null ?
                     <div style={{ backgroundImage: `url(${j})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%" }}>
@@ -157,9 +156,9 @@ function ReserveTicket() {
                     </div>
                     : <h2>Please login to reserve a ticket<br></br><Link to="/user/login">Click here to sign In</Link></h2>
             }
-            
+
         </div>
-    )
+    );
 }
 
 export default ReserveTicket;

@@ -20,6 +20,18 @@ function CreateTrain() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [values, setValues] = useState({
+        trainName : "",
+        source: "",
+        destination :"",
+        departureTime :"",
+        arrivalTime : "",
+        seatsAvailability : "",
+        fareId : ""
+    })
+
+    const regex = /^[A-Za-z]$/i;
+
     const myUser = localStorage.getItem("myUser");
     console.log(myUser);
 
@@ -33,6 +45,10 @@ function CreateTrain() {
             errors['trainNameError'] = "*Please enter the train name!";
         }
 
+        else if(!regex.test(trainName)) {
+            errors['trainNameError'] = "*Train name should not include any digits!";
+        }
+
         if (!source) {
             errors['sourceError'] = "*Please enter the source of the train!";
         }
@@ -41,8 +57,8 @@ function CreateTrain() {
             errors['destinationError'] = "*Please enter the destination of the train!";
         }
 
-        if (source === destination) {
-            errors['samLocationError'] = "*Source location and Destination location should be different!";
+        else if (values.source) {
+            errors ['destinationError'] = "*Source location and Destination location must be different!";
         }
 
         if (!departureTime) {
@@ -57,8 +73,16 @@ function CreateTrain() {
             errors['seatsAvailabilityError'] = "*Please enter the number od seats availability!";
         }
 
+        else if (seatsAvailability < 0) {
+            errors['seatsAvailabilityError'] = "*Seats availability should not any negative sign!";
+        }
+
         if (!fareId) {
             errors['fareIdError'] = "*Fare Id is required!";
+        }
+
+        else if(fareId < 0) {
+            errors['fareIdError'] = "*Fare id should not be in negative!";
         }
 
         setFormErrors(errors);
@@ -79,7 +103,7 @@ function CreateTrain() {
 
             dispatch(createNewTrain(payload));
             // alert("Train details are successfully added with id " + train.trainId);
-            navigate(`/fare/add/${fareId}`);
+            navigate(`/train1/all/${train.trainId}`);
         }
     }
 
@@ -111,7 +135,7 @@ function CreateTrain() {
                                         <div className='form-group'>
                                             <label htmlFor='source'>Source(From)  :</label>
                                             <select name="source" value={source} onChange={train => setSource(train.target.value)}>
-                                                <option>Select</option>
+                                                <option value="select">Select</option>
                                                 <option value="bangalore">Bangalore</option>
                                                 <option value="chennai">Chennai</option>
                                                 <option value="hyderabad">Hyderabad</option>
@@ -131,7 +155,7 @@ function CreateTrain() {
                                         <div className='form-group'>
                                             <label htmlFor='destination'>Destination(To)  :</label>
                                             <select name="destination" value={destination} onChange={train => setDestination(train.target.value)}>
-                                                <option>Select</option>
+                                                <option value="select">Select</option>
                                                 <option value="bangalore">Bangalore</option>
                                                 <option value="chennai">Chennai</option>
                                                 <option value="hyderabad">Hyderabad</option>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { cancelBooking, getBookingById } from '../../store/actions/BookingAction';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getBookingById } from '../../store/actions/BookingAction';
 import { getPnrById } from "../../store/actions/PnrAction";
 import m from '../assets/m.jpg';
 import m1 from '../assets/m1.jfif';
@@ -20,15 +20,6 @@ function FetchBooking1() {
 
     useEffect(fetchBooking, [id]);
 
-    const deleteBooking = () => {
-        dispatch(cancelBooking(id));
-        alert("Ticket canceled successfully");
-        navigate("/");
-    }
-
-    // const pnr = useSelector(state => state.pnrReducer.pnrById);
-    // const train = useSelector(state => state.trainReducer.train);
-    const [pnrId, setPnrId] = useState("");
     const { id1 } = useParams();
 
     const fetchPnr = () => {

@@ -12,7 +12,7 @@ function NavBar1() {
 
     useEffect(() => {
         const myUser = localStorage.getItem("myUser");
-        if(myUser !== null) {
+        if (myUser !== null) {
             setLoggedIn(true);
         }
     });
@@ -33,7 +33,7 @@ function NavBar1() {
     return (
         <Navbar className="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
 
-            <Link className="navbar-brand" to="#"><img src={logo} alt="logo" width="60px" height="40px" /></Link>
+            <Link className="navbar-brand" to="/"><img src={logo} alt="logo" width="60px" height="40px" /></Link>
 
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
@@ -51,9 +51,9 @@ function NavBar1() {
                     </NavDropdown>
                 </Nav>
                 <Nav className='container-fluid' style={{
-                alignItems: 'right',
-                justifyContent: 'right',
-            }}>
+                    alignItems: 'right',
+                    justifyContent: 'right',
+                }}>
                     <Nav.Link href="#"></Nav.Link>
                     <form class="form-inline" action="/action_page.php">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" />
@@ -62,13 +62,16 @@ function NavBar1() {
                     <Nav.Link>
                         {
                             loggedIn ?
-                            <li className='nav-item'>
-                                <button onClick={doLogout} className='btn btn-dark'>Logout</button>
-                            </li>
-                            :
-                            <li className='nav-item'>
-                                <button onClick={goToLogin} className='btn btn-dark'>Login</button>
-                            </li>
+                                <li className='nav-item'>
+                                    <button onClick={() => {
+                                        const confirmBox = window.confirm("Are you sure you want to Logout")
+                                        if (confirmBox === true) { doLogout() }
+                                    }} className='btn btn-dark'>Logout</button>
+                                </li>
+                                :
+                                <li className='nav-item'>
+                                    <button onClick={goToLogin} className='btn btn-dark'>Login</button>
+                                </li>
                         }
                     </Nav.Link>
                 </Nav>

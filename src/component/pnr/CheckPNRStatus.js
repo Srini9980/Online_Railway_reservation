@@ -31,6 +31,7 @@ function CheckPNRStatus() {
                         <div>
                             <p>Pnr No : {pnr.pnrId}</p>
                             <p>Status : {pnr.pnrStatus}</p>
+                            <p>Seat No : {pnr.seatNo}</p>
                             <p>Booking id : {pnr.bookingId}</p>
                             {
                                 booking !== null &&

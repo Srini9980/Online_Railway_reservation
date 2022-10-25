@@ -35,7 +35,7 @@ function EditFare() {
     }
 
     return (
-        <div style={{ backgroundImage: `url(${q})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"753px" }}>
+        <div style={{ backgroundImage: `url(${q})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height:"770px" }}>
             <NavBar/>
             <h2 style={{color:"white", fontSize:"40px", fontFamily:"-moz-initial"}}><u>Edit Fare</u></h2><br></br>
             <div className='container' style={{

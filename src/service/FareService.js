@@ -18,5 +18,5 @@ export function modifyFare(fare) {
 }
 
 export function deleteFare(id) {
-    return Axios.delete("http://localhost:8-85/fare/delete/" + id)
+    return Axios.delete("http://localhost:8085/fare/delete/" + id)
 }
